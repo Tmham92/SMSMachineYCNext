@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSMachineYCNext", "SMSMachineYCNext\SMSMachineYCNext.csproj", "{7213B181-E727-4522-AB15-C3F1DAEC073D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSMachine.Logic", "SMSMachine.Logic\SMSMachine.Logic.csproj", "{1978580C-96AA-450A-851D-73C3E6B122DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7213B181-E727-4522-AB15-C3F1DAEC073D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7213B181-E727-4522-AB15-C3F1DAEC073D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7213B181-E727-4522-AB15-C3F1DAEC073D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7213B181-E727-4522-AB15-C3F1DAEC073D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1978580C-96AA-450A-851D-73C3E6B122DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1978580C-96AA-450A-851D-73C3E6B122DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1978580C-96AA-450A-851D-73C3E6B122DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1978580C-96AA-450A-851D-73C3E6B122DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3D9B3095-9F13-4933-8AC8-87D9D549DD18}
+	EndGlobalSection
+EndGlobal

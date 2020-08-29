@@ -1,0 +1,58 @@
+﻿@model SMSMachine.Logic.SmsMachine
+
+@{
+    ViewBag.Title = "TextingPage";
+}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texting</title>
+    <link rel="stylesheet" href="~/Content/textingPage.css">
+</head>
+
+
+<h2>TextingPage</h2>
+
+<div class="container">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 phone-grid" align="center">
+
+        @{ if (ViewBag.Message != null)
+            {
+                <label>@ViewBag.Message</label>
+            }
+        }
+
+        <h6>@Html.LabelForModel(Model.Message)</h6>
+        <table>
+            <tbody style="align-content:center">
+                <tr>
+                    <td class="cell1"><button>@Html.ActionLink("1", "PressedButton", new { id = 1 })</button></td>
+                    <td class="cell2"><button>@Html.ActionLink("2abc", "PressedButton", new { id = 2 })</button></td>
+                    <td class="cell3"><button>@Html.ActionLink("3def", "PressedButton", new { id = 3 })</button></td>
+                </tr>
+                <tr>
+                    <td class="cell4"><button>@Html.ActionLink("4ghi", "PressedButton", new { id = 4 })</button></td>
+                    <td class="cell5"><button>@Html.ActionLink("5jkl", "PressedButton", new { id = 5 })</button></td>
+                    <td class="cell6"><button>@Html.ActionLink("6mno", "PressedButton", new { id = 6 })</button></td>
+                <tr>
+                    <td class="cell7"><button>@Html.ActionLink("7pqrs", "PressedButton", new { id = 7 })</button></td>
+                    <td class="cell8"><button>@Html.ActionLink("8tuv", "PressedButton", new { id = 8 })</button></td>
+                    <td class="cell9"><button>@Html.ActionLink("9wxyz", "PressedButton", new { id = 9 })</button></td>
+                </tr>
+                <tr>
+                    <td class="cell10"><button>@Html.ActionLink("*+", "PressedButton", new { id = 10 })</button></td>
+                    <td class="cell11"><button>@Html.ActionLink("_0", "PressedButton", new { id = 11 })</button></td>
+                    <td class="cell12"><button>@Html.ActionLink("#", "PressedButton", new { id = 12 })</button></td>
+                </tr>
+                <tr>
+                    <td><button>@Html.ActionLink("Crypto Save", "CryptoSaveMessage")</button></td>
+                    <td><button>@Html.ActionLink("Send", "SendMessage")</button></td>
+                    <td><button>@Html.ActionLink("Save", "SaveMessage")</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="col-md-3"></div>
+</div>

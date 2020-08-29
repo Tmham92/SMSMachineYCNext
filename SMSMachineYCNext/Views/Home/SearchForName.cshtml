@@ -1,0 +1,29 @@
+﻿@model SMSMachineYCNext.Models.RequestedData
+@{
+    ViewBag.Title = "SearchForName";
+}
+
+
+
+
+<div class="container body-content">
+    <div class="col-md-10">
+        <h2>Search For Name</h2>
+        @{ if (ViewBag.Result != null)
+            {
+                foreach (var item in ViewBag.Result)
+                {
+                    <label>@Html.Raw(item); <br /></label>
+                }
+
+            }}
+        @using (Html.BeginForm())
+        {
+            @Html.TextBoxFor(s => s.Phonenumber)
+            <input type="submit" value="Search" placeholder="Enter numbers to find" />
+        }
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+

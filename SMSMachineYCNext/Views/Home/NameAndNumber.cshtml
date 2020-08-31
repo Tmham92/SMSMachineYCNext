@@ -9,17 +9,22 @@
     @using (Html.BeginForm("NameAndNumber", "Home", FormMethod.Post))
     {
         <div class="col-md-4">
-            <label for="name">Name:</label>
-            @Html.TextBoxFor(data => data.Name)
+
         </div>
         <div class="col-md-4">
+            <label for="name">Name:</label><br />
+            @Html.TextBoxFor(data => data.Name)
             <label for="mumber">Number:</label>
-            @Html.TextBoxFor(data => data.Number)
+            @Html.TextBoxFor(data => data.Number) <br />
+            <div>
+                @Html.ActionLink("Submit", "NameAndNumber", "Home", new { @id = "submit" })
+            </div>
+        </div>
+        <div class="col-md-4">
+
         </div>
 
-        <div>
-            @Html.ActionLink("Submit", "NameAndNumber", "Home", new { @id = "submit" })
-        </div>
+
     }
 
 

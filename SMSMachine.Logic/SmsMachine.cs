@@ -25,7 +25,7 @@ namespace SMSMachine.Logic
         {
             if (ButtonPressed == _lastButton)
             {
-                if (DateTime.Now.Subtract(_lastClick).Seconds > 1)
+                if (DateTime.Now.Subtract(_lastClick).Seconds > 0.5)
                 {
                     Message += ButtonPressed[0];
                     _countingClicks = 0;
@@ -46,6 +46,14 @@ namespace SMSMachine.Logic
             }
             _lastButton = ButtonPressed;
             _lastClick = DateTime.Now;
+        }
+
+        void ISmsMachine.RemoveLastChar()
+        {
+            if (this.Message.Length > 0)
+            {
+                this.Message = Message.Substring(0, Message.Length - 1);
+            }
         }
 
         void ISmsMachine.SaveText(string path)

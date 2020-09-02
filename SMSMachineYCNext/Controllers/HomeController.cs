@@ -14,11 +14,14 @@ namespace SMSMachineYCNext.Controllers
 {
     public class HomeController : Controller
     {
+
+        [Route("Home/Index")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Route("Home/About")]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -84,7 +87,7 @@ namespace SMSMachineYCNext.Controllers
                     mySmsMachine.UseButton(" 0");
                     break;
                 case 12:
-                    mySmsMachine.UseButton("#");
+                    mySmsMachine.RemoveLastChar();
                     break;
             }
             return View("TextingPage", mySmsMachine);
@@ -94,6 +97,7 @@ namespace SMSMachineYCNext.Controllers
         {
             ISmsMachine smsMachine = (ISmsMachine)Session["SmsMachineObject"];
             smsMachine.SendMessage();
+            ViewBag.Message = "Text succesfully sent";
             return View("TextingPage", smsMachine);
         }
 

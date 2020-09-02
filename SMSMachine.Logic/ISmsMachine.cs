@@ -8,6 +8,8 @@
 
         void UseButton(string buttonPressed);
 
+        void RemoveLastChar();
+
         void SaveText(string path);
 
         void CryptoSaveMessage(string OriginPath, string DestinationPath);

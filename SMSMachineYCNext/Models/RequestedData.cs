@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace SMSMachineYCNext.Models
+﻿namespace SMSMachineYCNext.Models
 {
     public class RequestedData
     {

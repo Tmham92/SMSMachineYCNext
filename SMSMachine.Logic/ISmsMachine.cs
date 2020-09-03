@@ -13,5 +13,7 @@
         void SaveText(string path);
 
         void CryptoSaveMessage(string OriginPath, string DestinationPath);
+
+        void DecryptSavedMessage(string FilePath);
     }
 }

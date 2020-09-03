@@ -14,7 +14,24 @@
 <h2>TextingPage</h2>
 
 <div class="container">
-    <div class="col-md-3"></div>
+    <div class="col-md-3">
+        @{ if (ViewBag.Users != null)
+            {
+                <label>@ViewBag.Users</label>
+                }
+            }
+        <form id="get-user">
+            <h5>Dropdown list of users</h5>
+            <asp:dropdownlist runat="server" id="ddlTest">
+                <asp:listitem text="Red" value="1"></asp:listitem>
+                <asp:listitem text="Black" value="2"></asp:listitem>
+                <asp:listitem text="Blue" value="3"></asp:listitem>
+                <asp:listitem text="Green" value="4"></asp:listitem>
+                <asp:listitem text="Yellow" value="5"></asp:listitem>
+            </asp:dropdownlist>
+        </form>
+
+    </div>
     <div class="col-md-6 phone-grid" align="center">
 
         @{ if (ViewBag.Message != null)
@@ -22,6 +39,7 @@
                 <label>@ViewBag.Message</label>
             }
             }
+
 
         <h6>@Html.LabelForModel(Model.Message)</h6>
         <table>
@@ -49,6 +67,11 @@
                     <td><button>@Html.ActionLink("Crypto Save", "CryptoSaveMessage")</button></td>
                     <td><button>@Html.ActionLink("Send", "SendMessage")</button></td>
                     <td><button>@Html.ActionLink("Save", "SaveMessage")</button></td>
+                </tr>
+                <tr>
+                    <td><button>@Html.ActionLink("Decrypt", "DecryptSavedMessage")</button></td>
+                    <td style="background-color: white"></td>
+                    <td style="background-color: white"></td>
                 </tr>
             </tbody>
         </table>

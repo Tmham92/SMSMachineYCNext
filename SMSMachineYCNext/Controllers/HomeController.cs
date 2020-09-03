@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Web;
-using System.Web.Mvc;
-using SMSMachine.Logic;
-using System.IO;
+﻿using SMSMachine.Logic;
+using SMSMachineYCNext.Database;
 using SMSMachineYCNext.Models;
-using System.Collections;
-using System.Security.Cryptography;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Web.Mvc;
 
 namespace SMSMachineYCNext.Controllers
 {
@@ -38,11 +34,12 @@ namespace SMSMachineYCNext.Controllers
 
         public ViewResult TextingPage()
         {
-
             ISmsMachine smsMachine = new SmsMachine();
             smsMachine.Message = "";
             // Een soort 'BAG' waar je van alles kan opslaan. Session = per gebruiker
             Session["SmsMachineObject"] = smsMachine;
+            ViewBag.Users = CreateListOfUsers();
+
             return View("TextingPage", smsMachine);
 
         }
@@ -105,17 +102,33 @@ namespace SMSMachineYCNext.Controllers
         {
             ISmsMachine smsMachine = (ISmsMachine)Session["SmsMachineObject"];
 
-            try
+            using (var context = new DatabaseModelContainer())
             {
-                smsMachine.SaveText(@"C:\temp\Test.txt");
-                ViewBag.Message = "Text saved";
-                smsMachine.SendMessage();
+                var newMessage = new Message()
+                {
+                    TextMessage = smsMachine.Message,
+                    User = context.UserSet.Find(1)
+                };
+                context.MessageSet.Add(newMessage);
+                context.SaveChanges();
             }
-            catch (Exception ex)
-            {
-                ViewBag.Message = "Error while saving txt" + ex;
-            }
-            return View("TextingPage", smsMachine);
+
+            // Save to text file
+            //try
+            //{
+
+
+            //    smsMachine.SaveText(@"C:\temp\Test.txt");
+            //    ViewBag.Message = "Text saved";
+            //    smsMachine.SendMessage();
+            //}
+            //catch (Exception ex)
+            //{
+            //    ViewBag.Message = "Error while saving txt" + ex;
+            //}
+            smsMachine.SendMessage();
+            ViewBag.Message = "Text is Saved";
+                return View("TextingPage", smsMachine);
         }
 
         public ActionResult CryptoSaveMessage()
@@ -137,25 +150,21 @@ namespace SMSMachineYCNext.Controllers
             return View("TextingPage", smsMachine);
         }
 
-
-        public ActionResult NameAndNumber()
+        public ActionResult DecryptSavedMessage()
         {
-            IStoreNameAndNumber myNameAndNumberCollector = new StoreNameAndNumber();
-            Session["NameAndNumberCollector"] = myNameAndNumberCollector;
-            ViewBag.Message = "Name and Number Collector.";
-            return View("NameAndNumber");
+            ISmsMachine smsMachine = (ISmsMachine)Session["SmsMachineObject"];
+
+            try
+            {
+                smsMachine.DecryptSavedMessage(@"C:\temp\CryptoTest.txt");
+                ViewBag.Message = smsMachine.Message;
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = "Error while decrypting" + ex;
+            }
+            return View("TextingPage", smsMachine);
         }
-
-        [HttpPost]
-        public ActionResult NameAndNumber(StoreNameAndNumber data)
-        {
-            var Name = data.Name;
-            var Number = data.Number;
-            ViewBag.ReceivedData = $"{Name} has number {Number}";
-            return View(data);
-        }
-
-
 
         public ActionResult SearchForName()
         {
@@ -188,6 +197,22 @@ namespace SMSMachineYCNext.Controllers
             }
             ViewBag.Result = results.ToArray();
             return View();
+        }
+
+        public string CreateListOfUsers()
+        {
+            var context = new DatabaseModelContainer();
+            List<string> userList = new List<string>();
+            foreach (var user in context.UserSet)
+            {
+                userList.Add(user.FirstName + " " + user.LastName);
+            }
+            while (userList.Count > 0)
+            {
+                ViewBag.Users += userList[0] + " ";
+                userList.RemoveAt(0);
+            }
+            return ViewBag.Users;
         }
 
     }
